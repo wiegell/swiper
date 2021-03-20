@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { SwiperComponent } from 'src/angular/src/public-api';
 import SwiperCore, {
   Navigation,
@@ -29,8 +29,26 @@ SwiperCore.use([
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  @ViewChild('swiperRef', { static: false }) swiperRef?: SwiperComponent;
+export class AppComponent implements AfterViewInit {
+  @ViewChild('swiperVirtualRef', { static: false }) swiperVirtualRef?: SwiperComponent;
+
+  ngAfterViewInit() {
+    console.log('AFTER');
+    // debugger
+  }
+
+  slideChangeTransitionEnd(swiper) {
+    console.log('TRANSEND: ', swiper);
+  }
+
+  virtConf = {
+    addSlidesAfter: 3,
+    addSlidesBefore: 3,
+  };
+
+  change(swiper) {
+    console.log('SLIDECHANGE: ', swiper);
+  }
 
   show: boolean;
   thumbs: any;
