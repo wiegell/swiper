@@ -228,7 +228,7 @@ export default {
     beforeInit(swiper) {
       if (!swiper.params.virtual.enabled) return;
       swiper.classNames.push(`${swiper.params.containerModifierClass}virtual`);
-
+      console.log('BEFOREINIT');
       if (!swiper.params.initialSlide) {
         swiper.virtual.update();
       }
